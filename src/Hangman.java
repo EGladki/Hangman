@@ -45,7 +45,7 @@ public class Hangman {
                 return;
             }
             comparePlayerInputWithGuessingWord(wordForGuessingChars, hidedWord);
-            hangmanPrinting(mistakeCounter);
+            printHangman(mistakeCounter);
             System.out.println(hidedWord);
         }
 
@@ -97,25 +97,69 @@ public class Hangman {
     }
 
     public static boolean validateInput(char playerGuessing) {
-        String validationString = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
-        return validationString.contains(playerGuessing + "");
+        return ((playerGuessing >= 'А' && playerGuessing <= 'Я') || playerGuessing == 'Ё');
     }
 
-    public static void hangmanPrinting(int mistake) {
-        System.out.println(hangmanAsciiPictureStorage(mistake));
-    }
+    public static void printHangman(int mistake) {
+        switch (mistake) {
+            case 0:
+                System.out.println("_________");
+                System.out.println("|/      |");
+                System.out.println("|");
+                System.out.println("| ");
+                System.out.println("|");
+                System.out.println("|_______");
+                break;
+            case 1:
+                System.out.println("_________");
+                System.out.println("|/      |");
+                System.out.println("|       O");
+                System.out.println("|");
+                System.out.println("|");
+                System.out.println("|_______");
+                break;
+            case 2:
+                System.out.println("_________");
+                System.out.println("|/      |");
+                System.out.println("|       O");
+                System.out.println("|       |");
+                System.out.println("|");
+                System.out.println("|_______");
+                break;
+            case 3:
+                System.out.println("_________");
+                System.out.println("|/      |");
+                System.out.println("|       O");
+                System.out.println("|      /|");
+                System.out.println("|");
+                System.out.println("|_______");
+                break;
+            case 4:
+                System.out.println("_________");
+                System.out.println("|/      |");
+                System.out.println("|       O");
+                System.out.println("|      /|\\");
+                System.out.println("|");
+                System.out.println("|_______");
+                break;
+            case 5:
+                System.out.println("_________");
+                System.out.println("|/      |");
+                System.out.println("|       O");
+                System.out.println("|      /|\\");
+                System.out.println("|      / ");
+                System.out.println("|_______");
+                break;
+            case 6:
+                System.out.println("_________");
+                System.out.println("|/      |");
+                System.out.println("|       O");
+                System.out.println("|      /|\\");
+                System.out.println("|      / \\");
+                System.out.println("|_______");
+                break;
+        }
 
-    public static String hangmanAsciiPictureStorage(int mistake) {
-        String[] hangmanStages = {
-                "_________\n|/      |\n|\n| \n|\n|_______",
-                "_________\n|/      |\n|       O\n|\n|\n|_______",
-                "_________\n|/      |\n|       O\n|       |\n|\n|_______",
-                "_________\n|/      |\n|       O\n|      /|\n|\n|_______",
-                "_________\n|/      |\n|       O\n|      /|\\\n|\n|_______",
-                "_________\n|/      |\n|       O\n|      /|\\\n|      /\n|_______",
-                "_________\n|/      |\n|       O\n|      /|\\\n|      / \\\n|_______"
-        };
-        return hangmanStages[mistake];
     }
 
     public static void printWrongCharsList() {
